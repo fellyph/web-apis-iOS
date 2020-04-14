@@ -6,15 +6,19 @@
     <title>Stream API Example</title>
 </head>
 <body>
-
     <section class="container">
         <header>
             <h1>PWA and iOS</h1>
         </header>
         <div class="feature__example">
+
             <video id="player" controls autoplay></video>
-            <button id="capture">Capture</button>
             <canvas id="canvas" width=320 height=240></canvas>
+            <nav class="controls">
+                <button id="capture" disabled>Capture</button>
+                <button id="stop-stream" disabled>Stop Stream</button>
+                <button id="start-stream">Start Stream</button>
+            </nav>
         </div>
         <footer>
             created by @fellyph
@@ -27,21 +31,38 @@
       const canvas = document.getElementById('canvas');
       const context = canvas.getContext('2d');
       const captureButton = document.getElementById('capture');
-    
+      const stopStreamButton = document.getElementById('stop-stream');
+      const startStremButton = document.getElementById('start-stream');
+
       const constraints = {
         video: true,
       };
     
       captureButton.addEventListener('click', () => {
         // Draw the video frame to the canvas.
-        context.drawImage(player, 0, 0, canvas.width, canvas.height);
+        context.drawImage(player, 0, 0, canvas.width, canvas.height);   
       });
+
+      stopStreamButton.addEventListener('click', () => {
+        // Stop all video streams.
+        captureButton.disabled = true;
+        player.srcObject.getVideoTracks().forEach(track => track.stop());
+      });
+
+      startStremButton.addEventListener('click', startStream);
     
-      // Attach the video stream to the video element and autoplay.
-      navigator.mediaDevices.getUserMedia(constraints)
-        .then((stream) => {
-          player.srcObject = stream;
+      function startStream () {
+        // Attach the video stream to the video element and autoplay.
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then((stream) => {
+            player.srcObject = stream;
+            captureButton.disabled = false;
+            stopStreamButton.disabled = false;
+        })
+        .catch((err) => {
+            // Handle an error
         });
+      }
     </script> 
 </body>
 </html>
