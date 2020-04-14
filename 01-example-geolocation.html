@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA in iOS - Geolocation</title>
+</head>
+<body>
+    <section class="container">
+        <header>
+            <h1>PWA in iOS - Geolocation</h1>
+        </header>
+        <div class="feature__example">
+            <nav class="controls">
+                <button id="get-location">Get Location</button>
+            </nav>
+            Lat.: <span class="out-lat"></span>
+            Log.: <span class="out-lat"></span>
+        </div>
+        <footer>
+            created by @fellyph
+        </footer>
+    </section>
+
+
+    <script>
+        window.onload = function() {
+        var startPos;
+        var geoSuccess = function(position) {
+            startPos = position;
+            document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+            document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+        };
+        var geoError = function(error) {
+            console.log('Error occurred. Error code: ' + error.code);
+            // error.code can be:
+            //   0: unknown error
+            //   1: permission denied
+            //   2: position unavailable (error response from location provider)
+            //   3: timed out
+        };
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+        };
+    </script>
+</body>
+</html>
