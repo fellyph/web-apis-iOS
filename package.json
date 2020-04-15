@@ -1,0 +1,24 @@
+{
+  "name": "web-apis-ios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier:check": "prettier -c \"**/*.html\"",
+    "prettier:fix": "prettier --write \"**/*.html\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fellyph/web-apis-iOS.git"
+  },
+  "author": "fellyph",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fellyph/web-apis-iOS/issues"
+  },
+  "homepage": "https://github.com/fellyph/web-apis-iOS#readme",
+  "devDependencies": {
+    "prettier": "^2.0.4"
+  }
+}

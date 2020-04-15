@@ -1,52 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PWA in iOS - Geolocation</title>
-</head>
-<body>
+  </head>
+  <body>
     <section class="container">
-        <header>
-            <h1>PWA in iOS - Geolocation</h1>
-        </header>
-        <div class="feature__example">
-            <nav class="controls">
-                <button id="get-location">Get Location</button>
-            </nav>
-            Lat.: <span class="out-lat">0.0</span>
-            Log.: <span class="out-log">0.0</span>
-        </div>
-        <footer>
-            created by @fellyph
-        </footer>
+      <header>
+        <h1>PWA in iOS - Geolocation</h1>
+      </header>
+      <div class="feature__example">
+        <nav class="controls">
+          <button id="get-location">Get Location</button>
+        </nav>
+        Lat.: <span class="out-lat">0.0</span> Log.:
+        <span class="out-log">0.0</span>
+      </div>
+      <footer>
+        created by @fellyph
+      </footer>
     </section>
 
-
     <script>
-        let startPos;
-        const buttonGetLocation = document.getElementById('get-location');
-        const outLat = document.getElementById('out-lat');
-        const outLog = document.getElementById('out-log');
+      let startPos;
+      const buttonGetLocation = document.getElementById('get-location');
+      const outLat = document.getElementById('out-lat');
+      const outLog = document.getElementById('out-log');
 
-        const geoSuccess = (position) => {
-            startPos = position;
-            outLat.innerHTML = startPos.coords.latitude;
-            outLog.innerHTML = startPos.coords.longitude;
-        };
+      const geoSuccess = (position) => {
+        startPos = position;
+        outLat.innerHTML = startPos.coords.latitude;
+        outLog.innerHTML = startPos.coords.longitude;
+      };
 
-        const getError = (error) => {
-            console.log('Error occurred. Error code: ' + error.code);
-            // error.code can be:
-            //   0: unknown error
-            //   1: permission denied
-            //   2: position unavailable (error response from location provider)
-            //   3: timed out
-        }
-        
-        buttonGetLocation.addEventListener('click', () => {
-            navigator.geolocation.getCurrentPosition(geoSuccess, geoError); 
-        });
+      const getError = (error) => {
+        console.log('Error occurred. Error code: ' + error.code);
+        // error.code can be:
+        //   0: unknown error
+        //   1: permission denied
+        //   2: position unavailable (error response from location provider)
+        //   3: timed out
+      };
+
+      buttonGetLocation.addEventListener('click', () => {
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+      });
     </script>
-</body>
+  </body>
 </html>
