@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PWA and iOS - Picture in Picture Example</title>
+  </head>
+  <body>
+    <section class="container">
+      <header class="container__header">
+        <h1 class="container__title">Picture in Picture Example</h1>
+      </header>
+      <div class="feature__example">
+        <video id="video" src="my-video.mp4"></video>
+        <div id="controls">
+          <button id="playButton">Play</button>
+          <button id="pauseButton" hidden>Pause</button>
+          <button id="PiPButton">PiP</button>
+        </div>
+      </div>
+      <footer class="container__footer">
+        created by @fellyph
+      </footer>
+    </section>
+
+    <script>
+      if (
+        video.webkitSupportsPresentationMode &&
+        typeof video.webkitSetPresentationMode === 'function'
+      ) {
+        // Toggle PiP when the user clicks the button.
+        pipButtonElement.addEventListener('click', function (event) {
+          video.webkitSetPresentationMode(
+            video.webkitPresentationMode === 'picture-in-picture'
+              ? 'inline'
+              : 'picture-in-picture'
+          );
+        });
+      } else {
+        pipButtonElement.disabled = true;
+      }
+    </script>
+  </body>
+</html>
