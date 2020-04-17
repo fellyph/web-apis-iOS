@@ -3,18 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PWA and iOS - Clipboard API</title>
+    <title>PWA and iOS - FullScreen API Example</title>
+    <style>
+      body {
+        background-color: white;
+      }
+    </style>
   </head>
   <body>
     <section class="container">
       <header class="container__header">
-        <h1 class="container__title">Clipboard API Example</h1>
+        <h1 class="container__title">FullScreen API Example</h1>
       </header>
-      <div class="feature__example"></div>
+      <div class="feature__example">
+        <button id="go-full">Go fullscreen</button>
+        <button id="exit-full">Exit fullscreen</button>
+      </div>
       <footer class="container__footer">
         created by @fellyph
       </footer>
     </section>
-    <script></script>
+    <script>
+      let goFullScreenButton = document.getElementById("go-full");
+      goFullScreenButton.addEventListener("click", () => {
+          const requestFS = document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullScreen;
+          requestFS.call(document.documentElement);
+      });
+    </script>
   </body>
 </html>

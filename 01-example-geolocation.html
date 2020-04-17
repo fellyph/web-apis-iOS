@@ -14,8 +14,12 @@
         <nav class="controls">
           <button id="get-location">Get Location</button>
         </nav>
-        Lat.: <span class="out-lat">0.0</span> Log.:
-        <span class="out-log">0.0</span>
+        <p>
+          Lat.: <span id="out-lat">0.0</span>
+        </p>
+        <p>
+          Log.: <span id="out-log">0.0</span>
+        </p>
       </div>
       <footer class="container__footer">
         created by @fellyph
@@ -34,7 +38,7 @@
         outLog.innerHTML = startPos.coords.longitude;
       };
 
-      const getError = (error) => {
+      const geoError = (error) => {
         console.log('Error occurred. Error code: ' + error.code);
         // error.code can be:
         //   0: unknown error
