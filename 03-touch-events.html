@@ -3,28 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PWA and iOS - Clipboard API</title>
+    <title>PWA and iOS - Touch Events</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
     <section class="container">
       <header class="container__header">
-        <h1 class="container__title">Clipboard API Example</h1>
+        <h1 class="container__title"><span class="container__logo">PWA</span> and iOS</h1>
       </header>
-      <div class="feature__example">
-        <canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
-          Your browser does not support canvas element.
-        </canvas>
-        Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+      <div class="feature">
+        <header class="feature__header">
+          <h2 class="feature__subtitle">Touch Events</h2>
+        </header>
+        <div class="feature__content feature__content--centered">
+          <canvas id="canvas" width="320" height="320" class="feature__canvas">
+            Your browser does not support canvas element.
+          </canvas>
+          <div>
+            Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+          </div>
+        </div>
       </div>
       <footer class="container__footer">
-        created by @fellyph
+        <a href="./index.html">Back to home</a> - created by @fellyph
       </footer>
     </section>
     <script>
+      const el = document.getElementById("canvas");
+      const ctx = el.getContext("2d");
+      const logOut = document.getElementById('log');
+
       function handleMove(evt) {
         evt.preventDefault();
-        const el = document.getElementById("canvas");
-        const ctx = el.getContext("2d");
+
         const touches = evt.changedTouches;
 
         for (let i = 0; i < touches.length; i++) {
@@ -47,6 +59,111 @@
           } else {
             console.warn("can't figure out which touch to continue");
           }
+        }
+      }
+
+      function handleStart(evt) {
+        evt.preventDefault();
+        console.log("touchstart.");
+        const touches = evt.changedTouches;
+
+        for (var i = 0; i < touches.length; i++) {
+          console.log(`touchstart: ${i}...`);
+          ongoingTouches.push(copyTouch(touches[i]));
+          var color = colorForTouch(touches[i]);
+          ctx.beginPath();
+          ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false);  // a circle at the start
+          ctx.fillStyle = color;
+          ctx.fill();
+          console.log(`touchstart: ${i}.`);
+        }
+      }
+
+      function handleEnd(evt) {
+        evt.preventDefault();
+        log("touchend");
+        var touches = evt.changedTouches;
+
+        for (var i = 0; i < touches.length; i++) {
+          var color = colorForTouch(touches[i]);
+          var idx = ongoingTouchIndexById(touches[i].identifier);
+
+          if (idx >= 0) {
+            ctx.lineWidth = 4;
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+            ctx.lineTo(touches[i].pageX, touches[i].pageY);
+            ctx.fillRect(touches[i].pageX - 4, touches[i].pageY - 4, 8, 8);  // and a square at the end
+            ongoingTouches.splice(idx, 1);  // remove it; we're done
+          } else {
+            console.log("can't figure out which touch to end");
+          }
+        }
+      }
+
+      function handleEnd(evt) {
+        evt.preventDefault();
+        log("touchend");
+        var touches = evt.changedTouches;
+
+        for (var i = 0; i < touches.length; i++) {
+          var color = colorForTouch(touches[i]);
+          var idx = ongoingTouchIndexById(touches[i].identifier);
+
+          if (idx >= 0) {
+            ctx.lineWidth = 4;
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+            ctx.lineTo(touches[i].pageX, touches[i].pageY);
+            ctx.fillRect(touches[i].pageX - 4, touches[i].pageY - 4, 8, 8);  // and a square at the end
+            ongoingTouches.splice(idx, 1);  // remove it; we're done
+          } else {
+            console.log("can't figure out which touch to end");
+          }
+        }
+      }
+
+      function copyTouch({ identifier, pageX, pageY }) {
+        return { identifier, pageX, pageY };
+      }
+
+      function colorForTouch(touch) {
+        const r = touch.identifier % 16;
+        const g = Math.floor(touch.identifier / 3) % 16;
+        const b = Math.floor(touch.identifier / 7) % 16;
+        r = r.toString(16); // make it a hex digit
+        g = g.toString(16); // make it a hex digit
+        b = b.toString(16); // make it a hex digit
+        var color = "#" + r + g + b;
+        console.log("color for touch with identifier " + touch.identifier + " = " + color);
+        return color;
+      }
+
+      function ongoingTouchIndexById(idToFind) {
+        for (var i = 0; i < ongoingTouches.length; i++) {
+          var id = ongoingTouches[i].identifier;
+
+          if (id == idToFind) {
+            return i;
+          }
+        }
+        return -1;    // not found
+      }
+
+      function log(msg) {
+        logOut.innerHTML = msg + "\n" + p.innerHTML;
+      }
+
+      function handleCancel(evt) {
+        evt.preventDefault();
+        console.log("touchcancel.");
+        var touches = evt.changedTouches;
+
+        for (var i = 0; i < touches.length; i++) {
+          var idx = ongoingTouchIndexById(touches[i].identifier);
+          ongoingTouches.splice(idx, 1);  // remove it; we're done
         }
       }
 
