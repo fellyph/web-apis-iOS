@@ -4,23 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PWA and iOS - Stream API Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
     <section class="container">
       <header class="container__header">
-        <h1 class="container__title">Stream API Example</h1>
+        <h1 class="container__title"><span class="container__logo">PWA</span> and iOS</h1>
       </header>
-      <div class="feature__example">
-        <video id="player" controls autoplay></video>
-        <canvas id="canvas" width="320" height="240"></canvas>
-        <nav class="controls">
-          <button id="capture" disabled>Capture</button>
-          <button id="stop-stream" disabled>Stop Stream</button>
-          <button id="start-stream">Start Stream</button>
-        </nav>
+
+      <div class="feature">
+        <header class="feature__header">
+          <h2 class="feature__subtitle">Stream API</h2>
+        </header>
+        <div class="feature__content feature__content--centered ">
+          <div>
+            <video id="player" autoplay width="320" height="240"></video>
+          </div>
+          <canvas id="canvas" width="320" height="240"></canvas>
+          <nav class="controls">
+            <button id="capture" disabled>Capture</button>
+            <button id="stop-stream" disabled>Stop Stream</button>
+            <button id="start-stream">Start Stream</button>
+          </nav>
+        </div>
       </div>
       <footer class="container__footer">
-        created by @fellyph
+        <a href="./index.html">Back to home</a> created by @fellyph
       </footer>
     </section>
 
