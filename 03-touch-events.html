@@ -33,6 +33,7 @@
       const el = document.getElementById("canvas");
       const ctx = el.getContext("2d");
       const logOut = document.getElementById('log');
+      let ongoingTouches = [];
 
       function handleMove(evt) {
         evt.preventDefault();
@@ -153,7 +154,7 @@
       }
 
       function log(msg) {
-        logOut.innerHTML = msg + "\n" + p.innerHTML;
+        logOut.innerHTML = msg + "\n" + logOut.innerHTML;
       }
 
       function handleCancel(evt) {
