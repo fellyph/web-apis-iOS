@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PWA in iOS - Geolocation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <section class="container">
+      <header class="container__header">
+        <h1 class="container__title"><span class="container__logo">PWA</span> and iOS</h1>
+      </header>
+      <div class="feature">
+        <header class="feature__header">
+          <h2 class="feature__subtitle">Geolocation</h2>
+        </header>
+        <div class="feature__content">
+          <div class="controls">
+            <button id="get-location">check weather</button>
+          </div>
+          <p>
+            Lat.: <span id="out-lat">0.0</span>
+          </p>
+          <p>
+            Log.: <span id="out-log">0.0</span>
+          </p>
+          <p>
+            Temp.: <span id="out-temp">0.0</span>
+          </p>
+          <p>
+            Preci.: <span id="out-prec">0.0</span>
+          </p>
+        </div>
+      </div>
+      <nav class="navigation">
+        <a href="./index.html" class="navigation__back">Back to home</a> <a href="" class="navigation__next">Next exercise</a>
+      </nav>
+      <footer class="footer__container">
+        created by @fellyph
+      </footer>
+    </section>
+
+    <script>
+      /*
+        properties now: precipitation, precipitation_type, temp, feels_like, dewpoint, wind_speed, wind_gust, baro_pressure, visibility, humidity, wind_direction, sunrise, sunset, cloud_cover, cloud_ceiling, cloud_base, surface_shortwave_radiation, weather_code
+        properties daily: precipitation, precipitation_accumulation, temp, feels_like, dewpoint, wind_speed, baro_pressure, visibility, humidity, wind_direction, sunrise, sunset, moon_phase, weather_code
+      */
+
+      let startPos;
+      const buttonGetLocation = document.getElementById('get-location');
+      const outLat = document.getElementById('out-lat');
+      const outLog = document.getElementById('out-log');
+      const outTemp = document.getElementById('out-temp');
+      const outPrec = document.getElementById('out-prec');
+
+      let data = null;
+      let xhr = new XMLHttpRequest();
+      const apiKey = 'f5DnQ25YmKnF1eTCywJSPw3N2Iu0qJQ6';
+
+      const geoSuccess = (position) => {
+        startPos = position;
+        outLat.innerHTML = startPos.coords.latitude;
+        outLog.innerHTML = startPos.coords.longitude;
+        xhr.open("GET", `https://api.climacell.co/v3/weather/nowcast?lat=${startPos.coords.latitude}&lon=${startPos.coords.longitude}&unit_system=si&timestep=60&start_time=now&fields=temp%2Cprecipitation&&apikey=${apiKey}`);
+        xhr.send(data);
+      };
+
+      const geoError = (error) => {
+        console.log(`Error occurred. Error code: ${error.code}`);
+        // error.code can be:
+        //   0: unknown error
+        //   1: permission denied
+        //   2: position unavailable (error response from location provider)
+        //   3: timed out
+      };
+
+      buttonGetLocation.addEventListener('click', () => {
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+      });
+
+      xhr.addEventListener('readystatechange', (event) => {
+        if (event.target.readyState === event.target.DONE) {
+          // console.log(event.target.responseText);
+          let responseWeather = JSON.parse(event.target.responseText);
+          if(responseWeather !== null && responseWeather.length > 0 ) {
+            outTemp.innerHTML = responseWeather[0].temp.value + responseWeather[0].temp.units;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

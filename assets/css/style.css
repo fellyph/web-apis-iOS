@@ -5,6 +5,11 @@ body {
   font-family: 'Baloo Bhaina 2', cursive;
 }
 
+/*
+ * - Container
+ *
+ */
+
 .container {
   box-sizing: border-box;
   max-width: 100%;
@@ -30,6 +35,15 @@ body {
   text-shadow: 2px 2px 1px #333;
   font-size: 2em;
 }
+
+.footer__container {
+  text-align: center;
+ }
+
+/*
+ * - Feature
+ *
+ */
 
 .feature {
   background-color: #fff;
@@ -64,4 +78,64 @@ body {
 
 .feature__canvas {
   border: solid #333 1px;
+}
+
+/*
+ * - Navigation
+ *
+ */
+
+.navigation {
+  display: flex;
+  margin: 1em 0;
+  justify-content: space-between;
+}
+
+.navigation__next,
+.navigation__back {
+  background-color: #fff;
+  border: none;
+  color: #333;
+  text-decoration: none;
+  flex: 0 auto;
+  display: flex;
+  align-items: center;
+  box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.3);
+}
+
+.navigation__next {
+  padding-left: 0.5em;
+  margin-left: 0.5em;
+}
+
+.navigation__back {
+  padding-right: 0.5em;
+}
+
+.navigation__next:hover,
+.navigation__back:hover {
+  background-color:rgb(236, 167, 153);
+  color: #fff;
+}
+
+.navigation__next::after,
+.navigation__back::before {
+  background-color: rgb(236, 167, 153);
+  color: #fff;
+  display: inline-block;
+  height: 100%;
+  padding: 0em 1em;
+  font-size: 2em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.navigation__next::after {
+  content: '\203A';
+  margin-left: 0.4em;
+}
+
+.navigation__back::before {
+  content: '\2039';
+  margin-right: 0.4em;
 }

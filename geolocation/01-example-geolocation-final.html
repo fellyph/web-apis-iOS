@@ -17,9 +17,9 @@
           <h2 class="feature__subtitle">Geolocation</h2>
         </header>
         <div class="feature__content">
-          <nav class="controls">
+          <div class="controls">
             <button id="get-location">Get Location</button>
-          </nav>
+          </div>
           <p>
             Lat.: <span id="out-lat">0.0</span>
           </p>
@@ -28,8 +28,11 @@
           </p>
         </div>
       </div>
-      <footer class="container__footer">
-        <a href="./index.html">Back to home</a> - created by @fellyph
+      <nav class="navigation">
+        <a href="./index.html" class="navigation__back">Back to home</a> <a href="" class="navigation__next">Next exercise</a>
+      </nav>
+      <footer class="footer__container">
+        created by @fellyph
       </footer>
     </section>
 
@@ -47,7 +50,7 @@
 
       const geoError = (error) => {
         console.log('Error occurred. Error code: ' + error.code);
-        // error.code can be:
+        // error.code can-- be:
         //   0: unknown error
         //   1: permission denied
         //   2: position unavailable (error response from location provider)
@@ -56,6 +59,13 @@
 
       buttonGetLocation.addEventListener('click', () => {
         navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+        /*
+          wath the user posittion
+        navigator.geolocation.watchPosition(geoSuccess, geoError,{
+          timeout: 10000, // defines a timeout in mileseconds
+          enableHighAccuracy: true, // looks for the best position
+          maximumAge: 3000 // defines the timer to cache the information
+        }); */
       });
     </script>
   </body>
