@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PWA in iOS - Geolocation</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
   </head>
   <body>
     <section class="container">
@@ -14,28 +14,25 @@
       </header>
       <div class="feature">
         <header class="feature__header">
-          <h2 class="feature__subtitle">Geolocation</h2>
+          <h2 class="feature__subtitle">Geolocation - Weather app</h2>
         </header>
         <div class="feature__content">
-          <div class="controls">
-            <button id="get-location">check weather</button>
+          <p class="output--centered">
+            Lat.: <span id="out-lat">0.0</span> - Log.: <span id="out-log">0.0</span>
+          </p>
+          <div class="controls controls--centered">
+            <button id="get-location" class="controls__btn">check weather</button>
           </div>
-          <p>
-            Lat.: <span id="out-lat">0.0</span>
-          </p>
-          <p>
-            Log.: <span id="out-log">0.0</span>
-          </p>
-          <p>
+          <p class="feature__temp">
             Temp.: <span id="out-temp">0.0</span>
           </p>
           <p>
-            Preci.: <span id="out-prec">0.0</span>
+            Next hours: <p id="out-next"></p>
           </p>
         </div>
       </div>
       <nav class="navigation">
-        <a href="./index.html" class="navigation__back">Back to home</a> <a href="" class="navigation__next">Next exercise</a>
+        <a href="/index.html" class="navigation__back">Back to home</a> <a href="" class="navigation__next">Next exercise</a>
       </nav>
       <footer class="footer__container">
         created by @fellyph
@@ -83,7 +80,7 @@
       xhr.addEventListener('readystatechange', (event) => {
         if (event.target.readyState === event.target.DONE) {
           // console.log(event.target.responseText);
-          let responseWeather = JSON.parse(event.target.responseText);
+          const responseWeather = JSON.parse(event.target.responseText);
           if(responseWeather !== null && responseWeather.length > 0 ) {
             outTemp.innerHTML = responseWeather[0].temp.value + responseWeather[0].temp.units;
           }
