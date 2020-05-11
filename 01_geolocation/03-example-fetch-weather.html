@@ -32,7 +32,7 @@
         </div>
       </div>
       <nav class="navigation">
-        <a href="/index.html" class="navigation__back">Back to home</a> <a href="./03-example-fetch-weather-final.html" class="navigation__next">Next exercise</a>
+        <a href="/index.html" class="navigation__back">Back to home</a> <a href="" class="navigation__next">Next exercise</a>
       </nav>
       <footer class="footer__container">
         created by @fellyph
@@ -59,19 +59,21 @@
         startPos = position;
         outLat.innerHTML = startPos.coords.latitude;
         outLog.innerHTML = startPos.coords.longitude;
+        xhr.open("GET", `https://api.climacell.co/v3/weather/nowcast?lat=${startPos.coords.latitude}&lon=${startPos.coords.longitude}&unit_system=si&timestep=60&start_time=now&fields=temp%2Cprecipitation&&apikey=${apiKey}`);
+        xhr.send(data);
       };
 
       const geoError = (error) => {
         console.log(`Error occurred. Error code: ${error.code}`);
+        // error.code can be:
+        //   0: unknown error
+        //   1: permission denied
+        //   2: position unavailable (error response from location provider)
+        //   3: timed out
       };
 
-      document.addEventListener('DOMContentLoaded', () => {
-        navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-      });
-
       buttonGetLocation.addEventListener('click', () => {
-        xhr.open("GET", `https://api.climacell.co/v3/weather/nowcast?lat=${startPos.coords.latitude}&lon=${startPos.coords.longitude}&unit_system=si&timestep=60&start_time=now&fields=temp%2Cprecipitation&&apikey=${apiKey}`);
-        xhr.send(data);
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
       });
 
       xhr.addEventListener('readystatechange', (event) => {
