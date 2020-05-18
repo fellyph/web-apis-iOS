@@ -21,7 +21,7 @@
             Lat.: <span id="out-lat">0.0</span> - Log.: <span id="out-log">0.0</span>
           </p>
           <div class="controls controls--centered">
-            <button id="get-weather" class="controls__btn">check weather</button>
+            <button id="get-weather" class="controls__btn" disabled>check weather</button>
           </div>
           <p class="feature__temp">
             Temp.: <span id="out-temp">0.0</span>
@@ -53,6 +53,8 @@
       const btnWeather = document.getElementById('get-weather');
       const apiKey = 'f5DnQ25YmKnF1eTCywJSPw3N2Iu0qJQ6';
       const apiService = 'https://api.climacell.co/v3/weather/nowcast'
+
+      const xhr = new XMLHttpRequest();
 
       document.addEventListener('DOMContentLoaded', () => {
         navigator.geolocation.getCurrentPosition((position) => {
