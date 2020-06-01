@@ -32,9 +32,23 @@ const createDB = () => {
       outDB.innerHTML = 'Successed request';
     }
 
-    request.onupgradeneeded = () => {
+    request.onupgradeneeded = (event) => {
       console.log('Upgraded request', event)
       outDB.innerHTML = 'Upgraded request';
+
+      //saving the database
+      let db = event.target.result;
+
+      //
+      let objectStore = db.createObjectStore('forecast',
+        {
+          keyPath: 'id',
+          autoIncrement: true
+        });
+      objectStore.createIndex('lat', 'lat', {unique: false});
+      objectStore.createIndex('log', 'log', {unique: false});
+
+      console.log('Config completed');
     }
 
   } else {
@@ -44,8 +58,7 @@ const createDB = () => {
 }
 
 // execute script when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener('DOMContentLoaded', (event) => {
   outDB = document.getElementById('output-db');
   createDB();
 });

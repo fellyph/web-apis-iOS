@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PWA in iOS - Geolocation</title>
+    <title>PWA in iOS - IndexedDB</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
   </head>
@@ -14,31 +14,20 @@
       </header>
       <div class="feature">
         <header class="feature__header">
-          <h2 class="feature__subtitle">Geolocation - Weather app</h2>
+          <h2 class="feature__subtitle">IndexedDB</h2>
         </header>
         <div class="feature__content">
-          <p class="output--centered">
-            Lat.: <span id="out-lat">0.0</span> - Log.: <span id="out-log">0.0</span>
-          </p>
-          <div class="controls controls--centered">
-            <button id="get-weather" class="controls__btn">Check weather</button>
-          </div>
-          <p class="feature__temp">
-            Temp.: <span id="out-temp">0.0</span>
-          </p>
-          <p>
-            Next hours: <ul id="out-next"></ul>
-          </p>
+          <span id="output-DB"></span>
         </div>
       </div>
       <nav class="navigation">
-        <a href="/index.html" class="navigation__back">Back to home</a> <a href="" class="navigation__next">Next exercise</a>
+        <a href="/index.html" class="navigation__back">Back to home</a> <a href="./" class="navigation__next">Next exercise</a>
       </nav>
       <footer class="footer__container">
         created by @fellyph
       </footer>
     </section>
 
-    <script src="./js/03-example-fetch-weather-final.js"></script>
+    <script src="./js/02-example-indexedDB-defining-schema.js"></script>
   </body>
 </html>
