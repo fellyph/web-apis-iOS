@@ -19,7 +19,7 @@ let db;
 // function to create database
 const createDB = () => {
   if(window.indexedDB) {
-    const request = window.indexedDB.open("MyWeatherDB",1);
+    const request = window.indexedDB.open('myWeatherDB', 3);
 
     request.onerror = (event) => {
       console.log('Error request', event);
@@ -32,7 +32,20 @@ const createDB = () => {
       outDB.innerHTML = 'Successed request';
     }
 
-    request.onupgradeneeded = () => {
+    request.onupgradeneeded = (event) => {
+
+      db = event.target.result;
+
+      // objectStorage - "tabela"
+      const objectStoreLocation = db.createObjectStore('location',
+        {
+          keyPath: 'id',
+          autoIncrement: true
+        });
+
+      objectStoreLocation.createIndex('lat', 'lat', { unique: false });
+      objectStoreLocation.createIndex('log', 'log', { unique: false });
+
       console.log('Upgraded request', event)
       outDB.innerHTML = 'Upgraded request';
     }

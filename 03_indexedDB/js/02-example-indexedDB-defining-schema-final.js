@@ -37,7 +37,7 @@ let db;
 // function to create database
 const createDB = () => {
   if(window.indexedDB) {
-    const request = window.indexedDB.open("MyWeatherDB",1);
+    const request = window.indexedDB.open("myWeatherDB",3);
 
     request.onerror = (event) => {
       console.log('Error request', event);
@@ -69,8 +69,6 @@ const createDB = () => {
 
       // creating a second index the objectStore can have more than one
       objectStore.createIndex('log', 'log', {unique: false});
-
-      console.log('Config completed');
     }
 
   } else {

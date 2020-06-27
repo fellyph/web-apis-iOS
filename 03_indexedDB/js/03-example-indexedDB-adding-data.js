@@ -31,13 +31,20 @@
   // - https://www.youtube.com/watch?v=vb7fkBeblcw
 */
 
-let outDB;
-let db;
+let outDB,
+    inputLat,
+    inputLog,
+    inputCity,
+    locationForm,
+    db;
+
+const dbName = 'myWeatherDB',
+    storeName = 'location';
 
 // function to create database
 const createDB = () => {
   if(window.indexedDB) {
-    const request = window.indexedDB.open("MyWeatherDB",1);
+    const request = window.indexedDB.open(dbName, 3);
 
     request.onerror = (event) => {
       console.log('Error request', event);
@@ -51,14 +58,13 @@ const createDB = () => {
     }
 
     request.onupgradeneeded = (event) => {
-      console.log('Upgraded request', event)
       outDB.innerHTML = 'Upgraded request';
 
       //saving the database
       let db = event.target.result;
 
       //
-      let objectStore = db.createObjectStore('forecast',
+      let objectStore = db.createObjectStore(storeName,
         {
           keyPath: 'id',
           autoIncrement: true
@@ -70,7 +76,7 @@ const createDB = () => {
       // creating a second index the objectStore can have more than one
       objectStore.createIndex('log', 'log', {unique: false});
 
-      console.log('Config completed');
+      console.log('Upgraded request', event)
     }
 
   } else {
@@ -79,8 +85,38 @@ const createDB = () => {
   }
 }
 
+const addData = (event) => {
+  event.preventDefault();
+
+  const transactionAdd = db.transaction([storeName], 'readwrite');
+  const objectStore = transactionAdd.objectStore(storeName);
+
+  const newLocation = {
+    lat: inputLat.value,
+    log: inputLog.value,
+    city: inputCity.value
+  }
+
+  const request = objectStore.add(newLocation);
+
+  transactionAdd.oncomplete = (event) => {
+    console.log('transaction completed', event);
+  }
+
+  transactionAdd.onerror = (event) => {
+    console.log('transaction failed', event);
+  }
+}
+
 // execute script when the DOM is loaded
 document.addEventListener('DOMContentLoaded', (event) => {
   outDB = document.getElementById('output-db');
+  inputCity = document.getElementById('inputCity');
+  inputLat = document.getElementById('inputLat');
+  inputLog = document.getElementById('inputLog');
+  locationForm = document.getElementById('locationForm');
+
+  locationForm.onsubmit = addData;
+
   createDB();
 });

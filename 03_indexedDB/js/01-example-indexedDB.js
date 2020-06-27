@@ -12,14 +12,31 @@
 
   // - https://www.youtube.com/watch?v=vb7fkBeblcw
 */
-const outDB = document.getElementById('output-db');
-
+let outDB;
 
 // function to create database
 const createDB = () => {
+  if(window.indexedDB) {
+    const request = window.indexedDB.open('myWeatherDB',1);
 
+    request.onsuccess = (event) => {
+      console.log('on Success', event);
+    }
+
+    request.onerror = (event) => {
+      console.log('on Error', event);
+    }
+
+    request.onupgradeneeded = (event) => {
+      console.log('on Upgraded', event);
+    }
+
+  } else {
+    console.log('no support !')
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  outDB = document.getElementById('output-db');
   createDB();
 });

@@ -45,7 +45,6 @@ const createDB = () => {
 
 // execute script when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-
   outDB = document.getElementById('output-db');
   createDB();
 });
