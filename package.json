@@ -20,5 +20,8 @@
   "homepage": "https://github.com/fellyph/web-apis-iOS#readme",
   "devDependencies": {
     "prettier": "^2.0.4"
+  },
+  "dependencies": {
+    "localforage": "^1.8.1"
   }
 }

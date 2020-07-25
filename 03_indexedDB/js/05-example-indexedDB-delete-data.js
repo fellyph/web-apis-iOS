@@ -17,8 +17,8 @@
   - O armazena objetos organizados por tipos, não são os tipos padrões javaScript mas tipos que definimos durante a construcão de nosso banco
 
   ### Index
-  - O indice é um tipo criado para organizar nossa Object Store, por uma propriedade individual
-  - Um timpo de informação que podemos armazenar para consulta.
+  - O índice é um tipo criado para organizar nossa Object Store, por uma propriedade individual
+  - Um tipo de informação que podemos armazenar para consulta.
 
   ### Transactions
   - Um transação é um pacote que um grupo de operações para manter a integridade do banco de dados
