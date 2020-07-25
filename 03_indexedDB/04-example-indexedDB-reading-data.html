@@ -14,21 +14,39 @@
       </header>
       <div class="feature">
         <header class="feature__header">
-          <h2 class="feature__subtitle">02. IndexedDB</h2>
+          <h2 class="feature__subtitle">03. IndexedDB</h2>
         </header>
         <div class="feature__content">
-          <span id="output-db"></span>
+          <form id="locationForm">
+            <p>
+              <label for="inputLat">Latitude:</label>
+              <input type="number" name="latitude" id="inputLat" />
+            </p>
+            <p>
+              <label for="inputLog">Longitude:</label>
+              <input type="number" name="longitude" id="inputLog" />
+            </p>
+            <p>
+              <label for="inputCity">City:</label>
+              <input type="text" name="city" id="inputCity" />
+            </p>
+            <input type="submit" value="Save" />
+          </form>
+          <p>Database status: <span id="output-db"></span></p>
+          <ul id="output-data">
+
+          </ul>
         </div>
       </div>
       <nav class="navigation">
         <a href="/index.html" class="navigation__back">Back to home</a>
-        <a href="./03-example-indexedDB-adding-data.html" class="navigation__next">Next exercise</a>
+        <a href="./04-example-indexedDB-promised.html" class="navigation__next">Next exercise</a>
       </nav>
       <footer class="footer__container">
         created by @fellyph
       </footer>
     </section>
 
-    <script src="./js/02-example-indexedDB-defining-schema-final.js"></script>
+    <script src="./js/03-example-indexedDB-adding-data.js"></script>
   </body>
 </html>
