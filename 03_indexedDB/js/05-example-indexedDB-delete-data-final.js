@@ -108,12 +108,12 @@ const addData = (event) => {
   };
 
   transaction.oncomplete = (event) => {
-    console.log('transaction completed', event);
+    console.log('add transaction completed', event);
     readData();
   }
 
   transaction.onerror = (event) => {
-    console.log('transaction error', event);
+    console.log('add transaction error', event);
   }
 }
 
@@ -126,11 +126,18 @@ const readData = () => {
 
     if(cursor) {
       const listItem = document.createElement('li');
+      const deleteButton = document.createElement('button');
       const textItem = `City: ${cursor.value.city} lat: ${cursor.value.lat} log: ${cursor.value.log}`;
 
-      listItem.textContent = textItem;
-      listItem.setAttribute('data-location-id', cursor.value.id);
+      // creation delete button
+      deleteButton.textContent = 'Delete';
+      deleteButton.setAttribute('data-location-id', cursor.value.id);
+      deleteButton.addEventListener('click', removeLocation);
 
+      listItem.textContent = textItem;
+      listItem.appendChild(deleteButton);
+
+      // adding listItem to the general list
       dataList.appendChild(listItem);
 
       cursor.continue();
@@ -147,8 +154,29 @@ const cleanList = () => {
   dataList.innerHTML = '';
 }
 
+const removeLocation = (eventClick) => {
+  const locationId = parseInt(eventClick.target.getAttribute('data-location-id'), 10);
+
+  let deleteTransaction = db.transaction([storeName], 'readwrite');
+  let objectStore = deleteTransaction.objectStore(storeName);
+  let request = objectStore.delete(locationId);
+
+  request.onsuccess = (event) => {
+    console.log('request success ', event);
+  }
+
+  deleteTransaction.oncomplete = (event) => {
+    console.log(`delete location ${locationId} transaction completed`, event);
+    readData();
+  }
+
+  deleteTransaction.onerror = (event) => {
+    console.log('delete transaction error', event);
+  }
+}
+
 // execute script when the DOM is loaded
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
   outDB = document.getElementById('output-db');
   inputCity = document.getElementById('inputCity');
   inputLat = document.getElementById('inputLat');
