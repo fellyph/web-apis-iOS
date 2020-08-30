@@ -1,17 +1,14 @@
 {
   "name": "web-apis-ios",
   "version": "1.0.0",
-  "description": "",
+  "description": "PWA tutorial APP",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier:check": "prettier -c \"**/*.html\"",
     "prettier:fix": "prettier --write \"**/*.html\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fellyph/web-apis-iOS.git"
-  },
+  "repository": "git+https://github.com/fellyph/web-apis-iOS.git",
   "author": "fellyph",
   "license": "ISC",
   "bugs": {
@@ -22,6 +19,7 @@
     "prettier": "^2.0.4"
   },
   "dependencies": {
+    "cypress": "^5.0.0",
     "localforage": "^1.8.1"
   }
 }

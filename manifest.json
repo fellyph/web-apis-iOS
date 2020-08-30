@@ -1,0 +1,68 @@
+{
+  "name": "Tutoriais Fellyph Web APIs",
+  "display": "standalone",
+  "start_url": "/",
+  "short_name": "Web APIs",
+  "theme_color": "#DA2461",
+  "description": "Essa é uma aplicação de teste",
+  "orientation": "any",
+  "background_color": "#DA2461",
+  "icons": [
+    {
+      "src": "assets/icons/icon_512.png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "assets/icons/icon_192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icons/icon_48.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "assets/icons/icon_24.png",
+      "sizes": "24x24"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshots/screen1.png"
+    },
+    {
+      "src": "assets/screenshots/screen2.png"
+    },
+    {
+      "src": "assets/screenshots/screen3.png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Geo Location API",
+      "short_name": "Geo API",
+      "description": "Acesse exemplos de geo localiização",
+      "url": "/01_geolocation/01-example-geolocation-final.html",
+      "icons": [
+        { "src": "//icons/gelocalizacao.png", "sizes": "192x192" }
+      ]
+    },
+    {
+      "name": "Fetch API",
+      "short_name": "Fecth API",
+      "description": "Acesse exemplos utilizando a fetch api",
+      "url": "/02_fetch_api/01-example-xmlhttp-request-final.html",
+      "icons": [
+        { "src": "//icons/fetch.png", "sizes": "192x192" }
+      ]
+    },
+    {
+      "name": "IndexedDB API",
+      "short_name": "IndexedDB",
+      "description": "Acesse exemplos utilizando IndexedDB",
+      "url": "/03_indexedDB/01-indexedDB-events.html",
+      "icons": [
+        { "src": "//icons/indexed.png", "sizes": "192x192" }
+      ]
+    }
+  ]
+}
