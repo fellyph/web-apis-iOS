@@ -24,7 +24,7 @@
       "description": "Acesse exemplos de geo localiização",
       "url": "/01_geolocation/01-example-geolocation-final.html",
       "icons": [
-        { "src": "//assets/icons/geo.png", "sizes": "96x96" }
+        { "src": "/assets/icons/geo.png", "sizes": "96x96" }
       ]
     },
     {
@@ -33,7 +33,7 @@
       "description": "Acesse exemplos utilizando a fetch api",
       "url": "/02_fetch_api/01-example-xmlhttp-request-final.html",
       "icons": [
-        { "src": "//assets/icons/fetch.png", "sizes": "96x96" }
+        { "src": "/assets/icons/fetch.png", "sizes": "96x96" }
       ]
     },
     {
@@ -42,7 +42,7 @@
       "description": "Acesse exemplos utilizando IndexedDB",
       "url": "/03_indexedDB/01-indexedDB-events.html",
       "icons": [
-        { "src": "//assets/icons/indexed.png", "sizes": "96x96" }
+        { "src": "/assets/icons/indexed.png", "sizes": "96x96" }
       ]
     }
   ]
