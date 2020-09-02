@@ -16,7 +16,5 @@ This repo is a series of test over the iOS platform related to Web APIs capabili
 
 ### 4. Service Workers
 
-
-
-[live app](https://kind-pasteur-20325e.netlify.app/)
-[PT-BR PWA Course](https://www.youtube.com/playlist?list=PLmIA3VZysEqQCi5xOJJDb5QIYgHwPhf_D)
+Test the [live app](https://kind-pasteur-20325e.netlify.app/)
+More videos here [PT-BR PWA Course](https://www.youtube.com/playlist?list=PLmIA3VZysEqQCi5xOJJDb5QIYgHwPhf_D)
