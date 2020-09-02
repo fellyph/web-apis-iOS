@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="manifest" href="./manifest.json">
+    <link rel="shortcut icon" href="./assets/icons/pwa_icon.png">
   </head>
   <body>
     <section class="container">
@@ -121,6 +122,12 @@
           </footer>
         </article>
       </div>
+      <script type="module">
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+        const el = document.createElement('pwa-update');
+        document.body.appendChild(el);
+      </script>
       <footer class="footer__container">
         created by @fellyph
       </footer>
