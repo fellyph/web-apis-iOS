@@ -9,11 +9,11 @@
   "background_color": "#DA2461",
   "icons": [
     {
-      "src": "assets/icons/icon_512.png",
+      "src": "assets/icons/pwa_icon_512.png",
       "sizes": "512x512"
     },
     {
-      "src": "assets/icons/icon_192.png",
+      "src": "assets/icons/pwa_icon_192.png",
       "sizes": "192x192"
     }
   ],
@@ -21,7 +21,7 @@
     {
       "name": "Geo Location API",
       "short_name": "Geo API",
-      "description": "Acesse exemplos de geo localiização",
+      "description": "Acesse exemplos de geo localização",
       "url": "/01_geolocation/01-example-geolocation-final.html",
       "icons": [
         { "src": "/assets/icons/geo.png", "sizes": "96x96" }
