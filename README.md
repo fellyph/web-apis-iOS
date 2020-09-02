@@ -4,20 +4,19 @@ This repo is a series of test over the iOS platform related to Web APIs capabili
 
 ### 1. Geolocation API
 
-### 2. getUserMedia
+[Web API Portuguese tutorial](https://www.youtube.com/watch?v=dAZQlvdrLOw)
 
-### 3. Touch Events
+### 2. Fetch API
 
-### 4. device orientation
+[Fetch API PT-br tutorial](https://www.youtube.com/watch?v=_P990iU7UVs)
 
-### 5. full screen API
+### 3. IndexedDB
 
-### 6. Picture in Picture
+[IndexedDB PT-br tutorial](https://www.youtube.com/watch?v=ZqH5vp8a1Ok)
 
-### 7. airplay api
+### 4. Service Workers
 
-### 8. webshare api
 
-### 9. clipboard api
 
-### 10. indexdb 
+[live app](https://kind-pasteur-20325e.netlify.app/)
+[PT-BR PWA Course](https://www.youtube.com/playlist?list=PLmIA3VZysEqQCi5xOJJDb5QIYgHwPhf_D)
